@@ -1,16 +1,17 @@
 var connectionFactory = require('../infra/connectionFactory');
+var ProdutoDao = require('../infra/ProdutoDao');
 
 module.exports = function(app) {
 	app.get('/produtos', function(req, res) {
     var mysql = require('mysql');
 
 		var connection = connectionFactory();
+		var produtoDao = new ProdutoDao(connection);
 	
-  	connection.query('select * from livros', 
-	    function(err, result, fields) {
-		    res.render('produtos/lista', {lista:result});
-	    }
-    );
+		produtoDao.lista(function(error, result, fields) {
+		  res.render('produtos/lista', {lista:result});
+		});
+
   	connection.end();
 	});
 };
