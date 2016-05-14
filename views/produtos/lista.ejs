@@ -1,6 +1,25 @@
 <html>
   <body>
-    <h1>Produtos</h1>
-    <h2>Lista</h2>
+    <h2 class="basic-title">Livros</h2>
+    
+    <table class="table table-condensed table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <td>Título</td>
+          <td>Preço</td>
+          <td>Descrição</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(var i=0; i<lista.length; i++) { %>
+        <tr>
+          <td><%= lista[i].titulo %></td>
+          <td><%= lista[i].preco %></td>
+          <td><%= lista[i].descricao %></td>
+        </tr>
+        <% } %>
+      </tbody>
+    </table>
+
   </body>
 </html>
