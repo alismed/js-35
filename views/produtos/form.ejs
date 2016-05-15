@@ -1,3 +1,10 @@
+<% if(locals.validationErrors) { %>
+  <ul>
+  <% for(var i=0; i < validationErrors.length; i++) { %>
+    <li><%= validationErrors[i].msg %></li>
+  <% } %>
+  </ul>
+<% } %>
 
 <form action="/produtos" method="post" class="well" role="form">
   <div class="form-group">

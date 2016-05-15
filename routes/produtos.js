@@ -5,8 +5,26 @@ module.exports = function(app) {
 	app.post('/produtos', function(req, res) {
     var livro = req.body;
 
-		var connection = connectionFactory();
-		var produtos = new ProdutoDao(connection);
+    req.assert('titulo', 'Título deve ser preenchido').notEmpty();
+    //req.assert('preco', 'Preço deve ser preenchido').notEmpty();
+    req.assert('preco', 'Preço deve ser um número').isFloat();
+    var errors = req.validationErrors();
+
+    if(errors) {
+      res.format({
+        html: function() {
+          res.status(400).render('produtos/form',
+           {validationErrors: errors});
+        },
+        json: function() {
+          res.status(400).send(errors);
+        }
+      });
+      return;
+    }
+
+    var connection = connectionFactory();
+    var produtos = new ProdutoDao(connection);
 
 	  produtos.salva(livro, function(exception, result) {
       res.redirect('/produtos'); 
