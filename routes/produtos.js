@@ -18,13 +18,19 @@ module.exports = function(app) {
 	});
 
 	app.get('/produtos', function(req, res) {
-    var mysql = require('mysql');
 
 		var connection = connectionFactory();
 		var produtoDao = new ProdutoDao(connection);
 	
 		produtoDao.lista(function(error, result, fields) {
-		  res.render('produtos/lista', {lista:result});
+			res.format({
+				html: function() {
+		      res.render('produtos/lista', {lista:result});
+			  },
+				json: function() {
+		      res.json(result);
+			  }
+		  });
 		});
 
   	connection.end();
