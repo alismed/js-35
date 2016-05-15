@@ -1,4 +1,9 @@
 var mysql = require('mysql');
+var databaseName = 'fs35';
+
+if(process.env.NODE_ENV == 'test') {
+  databaseName = 'fs35_test';
+}
 
 function createConnection() {
 	return mysql.createConnection({
@@ -6,7 +11,7 @@ function createConnection() {
 		port     : '1523',
 		user     : 'root',
 		password : 'teste123',
-		database : 'fs35'
+		database : databaseName
 	});
 };
 

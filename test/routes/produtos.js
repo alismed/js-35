@@ -14,4 +14,15 @@ describe('#ProdutosController', function() {
       .expect('Content-Type', /html/)
       .expect(200, done)
   });
+
+  it('cadastro de produtos com tudo preenchido', function(done) {
+    request.post('/produtos')
+		  .send({ titulo    : 'teste novo livro',
+              preco     : 20.0,
+              descricao : 'livro de teste' })
+      .expect(302, done)
+			.end(function(err, response) {
+        done();
+      });
+  });
 });
