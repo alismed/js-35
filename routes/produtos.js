@@ -9,12 +9,12 @@ module.exports = function(app) {
 		var produtos = new ProdutoDao(connection);
 
 	  produtos.salva(livro, function(exception, result) {
-	    res.redirect('/produtos'); 
+      res.redirect('/produtos'); 
 	  });
 	});
 
 	app.get('/produtos/form', function(req, res) {
-	 res.render('produtos/form'); 
+    res.render('produtos/form'); 
 	});
 
 	app.get('/produtos', function(req, res) {
