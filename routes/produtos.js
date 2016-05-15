@@ -2,6 +2,21 @@ var connectionFactory = require('../infra/connectionFactory');
 var ProdutoDao = require('../infra/ProdutoDao');
 
 module.exports = function(app) {
+	app.post('/produtos', function(req, res) {
+    var livro = req.body;
+
+		var connection = connectionFactory();
+		var produtos = new ProdutoDao(connection);
+
+	  produtos.salva(livro, function(exception, result) {
+	    res.render('produtos/salvo'); 
+	  });
+	});
+
+	app.get('/produtos/form', function(req, res) {
+	 res.render('produtos/form'); 
+	});
+
 	app.get('/produtos', function(req, res) {
     var mysql = require('mysql');
 
