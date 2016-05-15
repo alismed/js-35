@@ -9,7 +9,7 @@ module.exports = function(app) {
 		var produtos = new ProdutoDao(connection);
 
 	  produtos.salva(livro, function(exception, result) {
-	    res.render('produtos/salvo'); 
+	    res.redirect('/produtos'); 
 	  });
 	});
 
