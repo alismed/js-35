@@ -15,5 +15,6 @@ module.exports = function() {
 	app.set('view engine', 'ejs');
 	require('./routes/produtos')(app);
 	require('./routes/site')(app);
+	require('./routes/promocoes')(app);
 	return app;
 };
